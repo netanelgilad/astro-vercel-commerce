@@ -1,0 +1,12 @@
+---
+import { getCollectionProducts } from "../../lib/wix";
+
+const products = await getCollectionProducts({
+  collection: Astro.props.collection,
+  sortKey: Astro.props.sortKey,
+  reverse: Astro.props.reverse,
+});
+
+const html = await Astro.slots.render('default', [products]);
+---
+<Fragment set:html={html} />

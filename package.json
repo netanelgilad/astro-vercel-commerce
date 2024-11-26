@@ -7,7 +7,20 @@
     "start": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "open-blocks": "tsx ./bekeilu-modules/wix-cli/src/open-editor.ts",
+    "generate-blocks": "tsx ./bekeilu-modules/wix-cli/src/generate-component.ts"
+  },
+  "devDependencies": {
+    "@wix/builder": "^1.0.0",
+    "@wix/builder-app-model": "^1.0.0",
+    "@wix/builder-commons": "^1.0.0",
+    "@wix/cli": "https://cdn.dev.wixpress.com/@wix/cli/a9ac33456ea908cb26cef8029273ba51f414462253bc0919c579d62a.tar.gz",
+    "@wix/cli-astro-internal": "https://cdn.dev.wixpress.com/@wix/cli-astro-internal/ca95c0d135ab341ede99f718ef8d309c5ebed87b61c094551fbf40dc.tar.gz",
+    "commander": "^12.1.0",
+    "inquirer": "^12.1.0",
+    "lodash": "^4.17.21",
+    "tsx": "^4.19.2"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
@@ -16,6 +29,7 @@
     "@tailwindcss/container-queries": "^0.1.1",
     "@tailwindcss/typography": "^0.5.15",
     "@wix/astro-internal": "^0.0.15",
+    "@wix/builder-wix-components": "^1.12.0",
     "@wix/data": "1.0.168",
     "@wix/ecom": "1.0.806",
     "@wix/redirects": "1.0.60",

@@ -1,0 +1,33 @@
+----- CLI crash report at 2024-11-20T15:44:47.168Z
+Error Trace
+Error: id: Required
+clientId: Required
+staticsNamespaceId: Required
+    at returnFn (/Users/carmelc/code/astro-vercel-commerce/node_modules/@wix/cli-astro-internal/src/clients/wixstro-service-client.ts:167:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at AsyncFunction.returnFn.safeCall (/Users/carmelc/code/astro-vercel-commerce/node_modules/@wix/cli-astro-internal/src/clients/wixstro-service-client.ts:239:15)
+    at <anonymous> (/Users/carmelc/code/astro-vercel-commerce/node_modules/@wix/cli-astro-internal/src/components/project-selector/CreateNewProject.tsx:27:21)
+Error Info
+{}
+----- CLI crash report at 2024-11-20T16:02:18.057Z
+Error Trace
+Error: id: Required
+clientId: Required
+staticsNamespaceId: Required
+    at returnFn (/Users/carmelc/code/astro-vercel-commerce/node_modules/@wix/cli-astro-internal/src/clients/wixstro-service-client.ts:167:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at AsyncFunction.returnFn.safeCall (/Users/carmelc/code/astro-vercel-commerce/node_modules/@wix/cli-astro-internal/src/clients/wixstro-service-client.ts:239:15)
+    at <anonymous> (/Users/carmelc/code/astro-vercel-commerce/node_modules/@wix/cli-astro-internal/src/components/project-selector/CreateNewProject.tsx:27:21)
+Error Info
+{}
+----- CLI crash report at 2024-11-20T16:03:34.563Z
+Error Trace
+Error: id: Required
+clientId: Required
+staticsNamespaceId: Required
+    at returnFn (/Users/carmelc/code/astro-vercel-commerce/node_modules/@wix/cli-astro-internal/src/clients/wixstro-service-client.ts:167:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at AsyncFunction.returnFn.safeCall (/Users/carmelc/code/astro-vercel-commerce/node_modules/@wix/cli-astro-internal/src/clients/wixstro-service-client.ts:239:15)
+    at <anonymous> (/Users/carmelc/code/astro-vercel-commerce/node_modules/@wix/cli-astro-internal/src/components/project-selector/CreateNewProject.tsx:27:21)
+Error Info
+{}

@@ -5,6 +5,7 @@ import ProductGridItems from "../../components/layout/product-grid-items.astro";
 import { defaultSort, sorting } from "../../lib/constants";
 import { getCollectionProducts } from "../../lib/wix";
 import SearchLayout from "../../components/layout/search/layout.astro";
+import { Widget1 } from "../../components/wix-blocks/generated/test-builder-blocks/src/";
 
 const searchParams = Object.fromEntries(Astro.url.searchParams.entries());
 const params = Astro.params;
@@ -20,6 +21,9 @@ const products = await getCollectionProducts({
 
 <Layout>
   <SearchLayout>
+    <section style={{height: '300px', width: '500px'}}>
+        <Widget1 client:only />
+    </section>
     <section>
       {
         products.length === 0 ? (

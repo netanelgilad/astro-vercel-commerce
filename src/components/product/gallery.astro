@@ -19,7 +19,7 @@ const previousImageIndex =
 const buttonClass =
   "h-full px-6 transition-all ease-in-out hover:scale-110 hover:text-black dark:hover:text-white flex items-center justify-center";
 ---
-
+<form id="image-selections"></form>
 <div class="relative aspect-square h-full max-h-[550px] w-full overflow-hidden">
   {
     Astro.props.images[imageIndex] && (
@@ -94,7 +94,7 @@ const buttonClass =
             <input
               type="radio"
               name="image"
-              form="view-selections"
+              form="image-selections"
               onchange="this.form.requestSubmit()"
               checked={isActive}
               id={imagesInputsIds[index]}

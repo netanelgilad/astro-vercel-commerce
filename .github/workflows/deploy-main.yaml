@@ -24,6 +24,7 @@ jobs:
         env:
           CLI_API_KEY: ${{ secrets.CLI_API_KEY }}
           WIX_CLI_TEST_OVERRIDES: "{\"inkDebug\": true}"
+          DEBUG: "*"
       - name: CLI pull env
         run: |
           yarn wix astro pull-env --prod

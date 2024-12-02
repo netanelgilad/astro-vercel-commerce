@@ -1,0 +1,49 @@
+---
+import type { Product } from "../../lib/wix/types";
+import { actions } from "astro:actions";
+import SubmitButton from "./submit-button.astro";
+
+type Props = {
+  product: Product;
+};
+
+const addItemToCartResult = Astro.getActionResult(actions.addItemToCart);
+
+const state = Object.fromEntries(
+  new URLSearchParams(Astro.url.search).entries()
+);
+
+const defaultVariantId =
+  Astro.props.product.variants.length === 1 ? Astro.props.product.variants[0]?.id : undefined;
+const productVariant = Astro.props.product.variants.find((variant) =>
+  variant.selectedOptions.every(
+    (option) => option.value === state[option.name.toLowerCase()]
+  )
+);
+
+const variant =
+  productVariant && productVariant.id === "00000000-0000-0000-0000-000000000000"
+    ? {
+        options: productVariant.selectedOptions.reduce(
+          (acc, option) => ({ ...acc, [option.name!]: option.value! }),
+          {} as Record<string, string>
+        ),
+      }
+    : { variantId: productVariant?.id };
+
+const html = await Astro.slots.render('default', [productVariant?.id ?? defaultVariantId, addItemToCartResult]);
+---
+
+<input
+  type="hidden"
+  name="productId"
+  value={Astro.props.product.id}
+  form="add-to-cart"
+/>
+<input
+  type="hidden"
+  name="variant"
+  value={JSON.stringify(variant)}
+  form="add-to-cart"
+/>
+<Fragment set:html={html} />

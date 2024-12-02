@@ -32,8 +32,4 @@ type Props = {
   ) : null
 }
 
-<AddToCart
-  productId={Astro.props.product.id}
-  variants={Astro.props.product.variants}
-  availableForSale={Astro.props.product.availableForSale}
-/>
+<AddToCart product={Astro.props.product} />

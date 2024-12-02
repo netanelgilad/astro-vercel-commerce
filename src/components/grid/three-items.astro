@@ -1,21 +1,19 @@
 ---
-import { getCollectionProducts } from "../../lib/wix";
 import ThreeItemGridItem from "./three-item-grid-item.astro";
-
-// Collections that start with `hidden-*` are hidden from the search page.
-const homepageItems = await getCollectionProducts({
-  collection: "hidden-homepage-featured-items",
-});
-
-if (!homepageItems[0] || !homepageItems[1] || !homepageItems[2]) return null;
-
-const [firstProduct, secondProduct, thirdProduct] = homepageItems;
+import WixStoresCollection from "../wix/wix-stores-collection.astro";
 ---
 
-<section
-  class="mx-auto grid max-w-screen-2xl gap-4 px-4 pb-4 md:grid-cols-6 md:grid-rows-2 lg:max-h-[calc(100vh-200px)]"
->
-  <ThreeItemGridItem size="full" item={firstProduct} />
-  <ThreeItemGridItem size="half" item={secondProduct} />
-  <ThreeItemGridItem size="half" item={thirdProduct} />
-</section>
+<WixStoresCollection collection="hidden-homepage-featured-items">
+  {(products: any) => {
+    const homepageItems = products.slice(0, 3);
+    return (
+      <section
+        class="mx-auto grid max-w-screen-2xl gap-4 px-4 pb-4 md:grid-cols-6 md:grid-rows-2 lg:max-h-[calc(100vh-200px)]"
+      >
+        <ThreeItemGridItem size="full" item={homepageItems[0]} />
+        <ThreeItemGridItem size="half" item={homepageItems[1]} />
+        <ThreeItemGridItem size="half" item={homepageItems[2]} />
+      </section>
+    );
+  }}
+</WixStoresCollection>

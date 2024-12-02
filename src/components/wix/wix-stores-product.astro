@@ -1,0 +1,13 @@
+---
+import { actions } from "astro:actions";
+import { getProduct } from "../../lib/wix";
+
+const product = await getProduct(Astro.props.product);
+
+if (!product) return new Response(null, { status: 404 });
+
+const html = await Astro.slots.render('default', [product]);
+---
+<form id="options-selections"></form>
+<form id="add-to-cart" method="post" action={actions.addItemToCart}></form>
+<Fragment set:html={html} />

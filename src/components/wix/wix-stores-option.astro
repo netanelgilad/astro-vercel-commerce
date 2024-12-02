@@ -1,0 +1,71 @@
+---
+import type { ProductOption, ProductVariant } from "../../lib/wix/types";
+
+type Props = {
+  option: ProductOption;
+  variants: ProductVariant[];
+};
+
+type Combination = {
+  id: string;
+  availableForSale: boolean;
+  [key: string]: string | boolean;
+};
+
+const state = Object.fromEntries(
+  new URLSearchParams(Astro.url.search).entries()
+);
+const combinations: Combination[] = Astro.props.variants.map((variant) => ({
+  id: variant.id,
+  availableForSale: variant.availableForSale,
+  ...variant.selectedOptions.reduce(
+    (accumulator, option) => ({
+      ...accumulator,
+      [option.name.toLowerCase()]: option.value,
+    }),
+    {}
+  ),
+}));
+
+const optionNameLowerCase = Astro.props.option.name.toLowerCase();
+const values = await Promise.all(Astro.props.option.values.map(async (value) => {
+  // Base option params on current selectedOptions so we can preserve any other param state.
+  const optionParams = Object.entries({ ...state, [optionNameLowerCase]: value });
+
+  // Filter out invalid options and check if the option combination is available for sale.
+  const isAvailableForSale = combinations.find((combination) =>
+    combination.availableForSale && optionParams.every(
+      ([key, value]) => combination[key] === value
+    )
+  );
+
+  // The option is active if it's in the selected options.
+  const isActive = state[optionNameLowerCase] === value;
+  const id = crypto.randomUUID();
+  const html = await Astro.slots.render('default', [{ id, value, isActive, isAvailableForSale }]);
+
+  return { id, value, isActive, isAvailableForSale, html };
+}));
+---
+
+{
+  values.map(({ id, value, isActive, isAvailableForSale, html }) => {
+    return (
+      <>
+        <input
+          type="radio"
+          aria-disabled={!isAvailableForSale}
+          disabled={!isAvailableForSale}
+          checked={isActive}
+          name={optionNameLowerCase}
+          value={value}
+          form="options-selections"
+          id={id}
+          onchange="this.form.requestSubmit()"
+          class="hidden"
+        />
+        <Fragment set:html={html}>
+      </>
+    );
+  })
+}

@@ -224,7 +224,7 @@ export async function updateCart(
 ): Promise<Cart> {
   const { cart } = await currentCart.updateCurrentCartLineItemQuantity(
     lines.map(({ id, quantity }) => ({
-      id: id,
+      _id: id,
       quantity,
     }))
   );

@@ -20,17 +20,17 @@ jobs:
         run: yarn --frozen-lockfile
       - name: Auth CLI
         run: |
-          npx wix login --api-key $CLI_API_KEY
+          yarn wix login --api-key $CLI_API_KEY
         env:
           CLI_API_KEY: ${{ secrets.CLI_API_KEY }}
           WIX_CLI_TEST_OVERRIDES: "{\"inkDebug\": true}"
       - name: CLI pull env
         run: |
-          npx wix astro pull-env --prod
+          yarn wix astro pull-env --prod
       - name: Build
         run: |
           yarn build
       - name: Deploy
         run: |
-          npx wix astro deploy --prod
+          yarn wix astro deploy --prod
       - run: echo "💡 Deployed to prod"
